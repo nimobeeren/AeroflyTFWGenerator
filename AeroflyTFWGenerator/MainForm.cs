@@ -141,13 +141,13 @@ namespace AeroflyTFWGenerator
         {
             if (!Directory.Exists(txtOutputDir.Text))
             {
-                MessageBox.Show("Output directory does not exist.", "Wrong output directory", MessageBoxButtons.OK,
+                MessageBox.Show("The output directory does not exist.", "Wrong output directory", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
             if (!File.Exists(txtMetadataFile.Text))
             {
-                MessageBox.Show("Metadata file does not exist.", "Wrong metadata file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The metadata file does not exist.", "Wrong metadata file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (listImages.Items.Count == 0)
@@ -170,12 +170,21 @@ namespace AeroflyTFWGenerator
                 // Get the width and height of the image
                 using (var file = new FileStream(item.Name, FileMode.Open, FileAccess.Read))
                 {
-                    using (var img = Image.FromStream(stream: file,
-                        useEmbeddedColorManagement: false,
-                        validateImageData: false))
+                    try
                     {
-                        width = img.PhysicalDimension.Width;
-                        height = img.PhysicalDimension.Height;
+                        using (var img = Image.FromStream(stream: file,
+                            useEmbeddedColorManagement: false,
+                            validateImageData: false))
+                        {
+                            width = img.PhysicalDimension.Width;
+                            height = img.PhysicalDimension.Height;
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        // If we cannot load the image, ignore it
+                        ignoreCount++;
+                        continue;
                     }
                 }
 
@@ -220,7 +229,7 @@ namespace AeroflyTFWGenerator
             {
                 MessageBox.Show(
                     $"Some images could not be found in the selected metadata file. Wrote {writeCount} and ignored {ignoreCount} file(s).",
-                    "Images not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Metadata not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
