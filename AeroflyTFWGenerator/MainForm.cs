@@ -141,12 +141,19 @@ namespace AeroflyTFWGenerator
         {
             if (!Directory.Exists(txtOutputDir.Text))
             {
-                MessageBox.Show("Output directory does not exist.");
+                MessageBox.Show("Output directory does not exist.", "Wrong output directory", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             if (!File.Exists(txtMetadataFile.Text))
             {
-                MessageBox.Show("Metadata file does not exist.");
+                MessageBox.Show("Metadata file does not exist.", "Wrong metadata file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (listImages.Items.Count == 0)
+            {
+                MessageBox.Show("Please add some images to the list.", "No images", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
 
@@ -187,21 +194,20 @@ namespace AeroflyTFWGenerator
                 {
                     // If this image is not found in metadata, ignore it
                     ignoreCount++;
+                    continue;
                 }
-                else
-                {
-                    // Lines to be written in TFW
-                    lines[0] = (3.75 / 60 / width).ToString("0.####################");
-                    lines[1] = "0";
-                    lines[2] = "0";
-                    lines[3] = (-3.75 / 60 / height).ToString("0.####################");
-                    lines[4] = ((string[])_metadata[lineIndex])[3].Replace("\"\"", "");
-                    lines[5] = ((string[])_metadata[lineIndex])[6].Replace("\"\"", "");
 
-                    // Write lines to file
-                    File.WriteAllLines(Path.Combine(txtOutputDir.Text, fileName + ".tfw"), lines);
-                    writeCount++;
-                }
+                // Lines to be written in TFW
+                lines[0] = (3.75 / 60 / width).ToString("0.####################");
+                lines[1] = "0";
+                lines[2] = "0";
+                lines[3] = (-3.75 / 60 / height).ToString("0.####################");
+                lines[4] = ((string[])_metadata[lineIndex])[3].Replace("\"\"", "");
+                lines[5] = ((string[])_metadata[lineIndex])[6].Replace("\"\"", "");
+
+                // Write lines to file
+                File.WriteAllLines(Path.Combine(txtOutputDir.Text, fileName + ".tfw"), lines);
+                writeCount++;
             }
 
             // Report when finished
