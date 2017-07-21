@@ -66,14 +66,14 @@
             this.txtMetadataFile.Location = new System.Drawing.Point(12, 64);
             this.txtMetadataFile.Name = "txtMetadataFile";
             this.txtMetadataFile.Size = new System.Drawing.Size(274, 20);
-            this.txtMetadataFile.TabIndex = 2;
+            this.txtMetadataFile.TabIndex = 3;
             // 
             // btnMetadataBrowse
             // 
             this.btnMetadataBrowse.Location = new System.Drawing.Point(292, 62);
             this.btnMetadataBrowse.Name = "btnMetadataBrowse";
             this.btnMetadataBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnMetadataBrowse.TabIndex = 3;
+            this.btnMetadataBrowse.TabIndex = 4;
             this.btnMetadataBrowse.Text = "Browse";
             this.btnMetadataBrowse.UseVisualStyleBackColor = true;
             this.btnMetadataBrowse.Click += new System.EventHandler(this.btnMetadataBrowse_Click);
@@ -85,7 +85,7 @@
             this.listImages.Name = "listImages";
             this.listImages.ShowItemToolTips = true;
             this.listImages.Size = new System.Drawing.Size(355, 97);
-            this.listImages.TabIndex = 4;
+            this.listImages.TabIndex = 5;
             this.listImages.UseCompatibleStateImageBehavior = false;
             this.listImages.View = System.Windows.Forms.View.List;
             this.listImages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listImages_KeyUp);
@@ -95,7 +95,7 @@
             this.btnImagesAdd.Location = new System.Drawing.Point(12, 206);
             this.btnImagesAdd.Name = "btnImagesAdd";
             this.btnImagesAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnImagesAdd.TabIndex = 5;
+            this.btnImagesAdd.TabIndex = 6;
             this.btnImagesAdd.Text = "Add";
             this.btnImagesAdd.UseVisualStyleBackColor = true;
             this.btnImagesAdd.Click += new System.EventHandler(this.btnImagesAdd_Click);
@@ -105,7 +105,7 @@
             this.btnImagesRemove.Location = new System.Drawing.Point(93, 206);
             this.btnImagesRemove.Name = "btnImagesRemove";
             this.btnImagesRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnImagesRemove.TabIndex = 6;
+            this.btnImagesRemove.TabIndex = 7;
             this.btnImagesRemove.Text = "Remove";
             this.btnImagesRemove.UseVisualStyleBackColor = true;
             this.btnImagesRemove.Click += new System.EventHandler(this.btnImagesRemove_Click);
@@ -115,7 +115,7 @@
             this.btnGenerate.Location = new System.Drawing.Point(12, 235);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(355, 46);
-            this.btnGenerate.TabIndex = 7;
+            this.btnGenerate.TabIndex = 8;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -136,7 +136,7 @@
             this.btnOutputBrowse.Location = new System.Drawing.Point(292, 23);
             this.btnOutputBrowse.Name = "btnOutputBrowse";
             this.btnOutputBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnOutputBrowse.TabIndex = 10;
+            this.btnOutputBrowse.TabIndex = 2;
             this.btnOutputBrowse.Text = "Browse";
             this.btnOutputBrowse.UseVisualStyleBackColor = true;
             this.btnOutputBrowse.Click += new System.EventHandler(this.btnOutputBrowse_Click);
@@ -146,7 +146,7 @@
             this.txtOutputDir.Location = new System.Drawing.Point(12, 25);
             this.txtOutputDir.Name = "txtOutputDir";
             this.txtOutputDir.Size = new System.Drawing.Size(274, 20);
-            this.txtOutputDir.TabIndex = 9;
+            this.txtOutputDir.TabIndex = 1;
             // 
             // label3
             // 
