@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMetadataFile = new System.Windows.Forms.TextBox();
@@ -128,7 +129,7 @@
             // openImage
             // 
             this.openImage.DefaultExt = "tif";
-            this.openImage.Filter = "Image files|*.tif|All files|*.*";
+            this.openImage.Filter = "Image files|*.tif;*.jp2;*.bmp;*.jpg;*.png|All files|*.*";
             this.openImage.Multiselect = true;
             // 
             // btnOutputBrowse
@@ -174,6 +175,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
