@@ -147,7 +147,8 @@ namespace AeroflyTFWGenerator
             }
             if (!File.Exists(txtMetadataFile.Text))
             {
-                MessageBox.Show("The metadata file does not exist.", "Wrong metadata file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The metadata file does not exist.", "Wrong metadata file", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             if (listImages.Items.Count == 0)
@@ -211,11 +212,12 @@ namespace AeroflyTFWGenerator
                 lines[1] = "0";
                 lines[2] = "0";
                 lines[3] = (-3.75 / 60 / height).ToString("0.####################");
-                lines[4] = ((string[])_metadata[lineIndex])[3].Replace("\"\"", "");
-                lines[5] = ((string[])_metadata[lineIndex])[6].Replace("\"\"", "");
+                lines[4] = ((string[]) _metadata[lineIndex])[3].Replace("\"\"", "");
+                lines[5] = ((string[]) _metadata[lineIndex])[6].Replace("\"\"", "");
 
                 // Write lines to file
                 File.WriteAllLines(Path.Combine(txtOutputDir.Text, fileName + ".tfw"), lines);
+                listImages.Items.Remove(item);
                 writeCount++;
             }
 
@@ -228,7 +230,7 @@ namespace AeroflyTFWGenerator
             else
             {
                 MessageBox.Show(
-                    $"Some images could not be found in the selected metadata file. Wrote {writeCount} and ignored {ignoreCount} file(s).",
+                    $"Some images could not be found in the selected metadata file. Wrote {writeCount} and ignored {ignoreCount} file(s). Check the list to see which items were ignored.",
                     "Metadata not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
