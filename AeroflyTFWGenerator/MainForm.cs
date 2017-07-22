@@ -11,8 +11,6 @@ namespace AeroflyTFWGenerator
 {
     public partial class MainForm : Form
     {
-        private ArrayList _metadata = new ArrayList();
-
         /// <summary>
         /// Standard form constructor
         /// </summary>
@@ -60,7 +58,6 @@ namespace AeroflyTFWGenerator
             if (openMetadata.ShowDialog() == DialogResult.OK)
             {
                 txtMetadataFile.Text = openMetadata.FileName;
-                _metadata = ParseCSV(File.ReadAllLines(openMetadata.FileName));
             }
         }
 
@@ -158,9 +155,10 @@ namespace AeroflyTFWGenerator
                 return;
             }
 
+            var metadata = ParseCSV(File.ReadAllLines(txtMetadataFile.Text));
+
             var writeCount = 0;
             var ignoreCount = 0;
-
             foreach (ListViewItem item in listImages.Items)
             {
                 var lines = new string[6];
@@ -191,9 +189,9 @@ namespace AeroflyTFWGenerator
 
                 // Find the line in metadata corresponding to this image
                 var lineIndex = -1;
-                for (var i = 0; i < _metadata.Count; i++)
+                for (var i = 0; i < metadata.Count; i++)
                 {
-                    if (((string[]) _metadata[i])[1] == fileName)
+                    if (((string[]) metadata[i])[1] == fileName)
                     {
                         lineIndex = i;
                         break;
@@ -212,8 +210,8 @@ namespace AeroflyTFWGenerator
                 lines[1] = "0";
                 lines[2] = "0";
                 lines[3] = (-3.75 / 60 / height).ToString("0.####################");
-                lines[4] = ((string[]) _metadata[lineIndex])[3].Replace("\"\"", "");
-                lines[5] = ((string[]) _metadata[lineIndex])[6].Replace("\"\"", "");
+                lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"\"", "");
+                lines[5] = ((string[]) metadata[lineIndex])[6].Replace("\"\"", "");
 
                 // Write lines to file
                 File.WriteAllLines(Path.Combine(txtOutputDir.Text, fileName + ".tfw"), lines);
