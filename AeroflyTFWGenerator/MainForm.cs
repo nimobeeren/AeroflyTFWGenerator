@@ -157,6 +157,8 @@ namespace AeroflyTFWGenerator
 
             var metadata = ParseCSV(File.ReadAllLines(txtMetadataFile.Text));
 
+            // TODO: Check if metadata is correct format
+
             var writeCount = 0;
             var ignoreCount = 0;
             foreach (ListViewItem item in listImages.Items)
@@ -191,10 +193,19 @@ namespace AeroflyTFWGenerator
                 var lineIndex = -1;
                 for (var i = 0; i < metadata.Count; i++)
                 {
-                    if (((string[]) metadata[i])[1] == fileName)
+                    try
                     {
-                        lineIndex = i;
-                        break;
+                        if (((string[]) metadata[i])[1] == fileName)
+                        {
+                            lineIndex = i;
+                            break;
+                        }
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        MessageBox.Show("Metadata file has invalid format.", "Metadata invalid", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
@@ -210,8 +221,17 @@ namespace AeroflyTFWGenerator
                 lines[1] = "0";
                 lines[2] = "0";
                 lines[3] = (-3.75 / 60 / height).ToString("0.####################");
-                lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"\"", "");
-                lines[5] = ((string[]) metadata[lineIndex])[6].Replace("\"\"", "");
+                try
+                {
+                    lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"\"", "");
+                    lines[5] = ((string[]) metadata[lineIndex])[6].Replace("\"\"", "");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    MessageBox.Show("Metadata file has invalid format.", "Metadata invalid", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Write lines to file
                 File.WriteAllLines(Path.Combine(txtOutputDir.Text, fileName + ".tfw"), lines);
