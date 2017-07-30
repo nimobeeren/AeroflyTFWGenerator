@@ -224,8 +224,9 @@ namespace AeroflyTFWGenerator
                 lines[3] = (-3.75 / 60 / height).ToString("0.####################", new CultureInfo("en-us"));
                 try
                 {
-                    lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"\"", "");
-                    lines[5] = ((string[]) metadata[lineIndex])[6].Replace("\"\"", "");
+                    // Take first and last coordinate and remove quotes
+                    lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"", "");
+                    lines[5] = ((string[]) metadata[lineIndex])[6].Replace("\"", "");
                 }
                 catch (IndexOutOfRangeException)
                 {
