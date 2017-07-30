@@ -42,6 +42,7 @@
             this.btnOutputBrowse = new System.Windows.Forms.Button();
             this.txtOutputDir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -82,13 +83,16 @@
             // listImages
             // 
             this.listImages.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.listImages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.listImages.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listImages.Location = new System.Drawing.Point(12, 103);
             this.listImages.Name = "listImages";
             this.listImages.ShowItemToolTips = true;
             this.listImages.Size = new System.Drawing.Size(355, 97);
             this.listImages.TabIndex = 5;
             this.listImages.UseCompatibleStateImageBehavior = false;
-            this.listImages.View = System.Windows.Forms.View.List;
+            this.listImages.View = System.Windows.Forms.View.Details;
             this.listImages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listImages_KeyUp);
             // 
             // btnImagesAdd
@@ -158,6 +162,11 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Output directory";
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 330;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,6 +209,7 @@
         private System.Windows.Forms.Button btnOutputBrowse;
         private System.Windows.Forms.TextBox txtOutputDir;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
 
