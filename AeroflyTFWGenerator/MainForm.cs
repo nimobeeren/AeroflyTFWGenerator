@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -217,10 +218,10 @@ namespace AeroflyTFWGenerator
                 }
 
                 // Lines to be written in TFW
-                lines[0] = (3.75 / 60 / width).ToString("0.####################");
+                lines[0] = (3.75 / 60 / width).ToString("0.####################", new CultureInfo("en-us"));
                 lines[1] = "0";
                 lines[2] = "0";
-                lines[3] = (-3.75 / 60 / height).ToString("0.####################");
+                lines[3] = (-3.75 / 60 / height).ToString("0.####################", new CultureInfo("en-us"));
                 try
                 {
                     lines[4] = ((string[]) metadata[lineIndex])[3].Replace("\"\"", "");
